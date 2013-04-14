@@ -1,0 +1,39 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Release Notes - Cambios y Mejoras";    
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+                @*
+                <br/>
+                <h2>@ViewBag.Message</h2>
+                *@
+            </hgroup>
+            <p>
+                Lista detallada de los cambios hechos en la aplicacion ordenados por fecha.
+            </p>
+        </div>
+    </section>
+}
+<h3>14-Abril-2013</h3>
+<ul>
+    <li>La seccion de Release Notes fue creada</li>
+    <li>Sitio Web es configurado para funcionar en el entorno Azure de Microsoft</li>
+    <li>El sitio web en Azure es automaticamente construido despues de salvar cambios</li>
+    <li>Modulo Transportista Cambios (Todas las paginas estan en estado de prototipo)</li>
+    <ul>
+        <li>Pagina de Inicio esta disponible</li>
+        <li>Pagina de subida de archivo de albaran esta disponible</li>
+        <li>Pagina de verificacion de albaran importada esta disponible</li>
+    </ul>
+</ul>
+<h3>13-Abril-2013</h3>
+<ul>
+    <li>Modulo de seguridad fue anadido con base de datos para la informacion de los usuarios</li>
+    <li>Solucion para la applicacion fue creada</li>
+</ul>
