@@ -8,9 +8,18 @@ namespace Aemp.Logistica.Web.Controllers
 {
   public class HomeController : Controller
   {
+    [Authorize]
     public ActionResult Index()
     {
-      ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+      if (User.Identity.IsAuthenticated)
+      {
+        ViewBag.Message = "[Nombre del Transportista]";  
+      }
+      else
+      {
+        ViewBag.Message = "Registrese para poder acceder a las funciones de transportista.";
+      }
+      
 
       return View();
     }

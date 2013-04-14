@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+        <title>@ViewBag.Title - AEMPM</title>
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
         @Styles.Render("~/Content/css")
@@ -12,19 +12,46 @@
         <header>
             <div class="content-wrapper">
                 <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
+                    <p class="site-title">
+                        
+                        <table style="margin-top:0">
+                            <tr>
+                                <td>
+                                    <img src="~/Images/aempm_logo.jpg" alt="AEMPM Logo"/>
+                                </td>
+                                <td>
+                                    <table>
+                                    <tr>
+                                        <td class="featured">Asociación de Empresarios</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="featured">Mayoristas de Pescados de Madrid</td>            
+                                    </tr>
+                                    </table>
+                                </td>                                
+                            </tr>                            
+                        </table>
+                        @*@Html.ActionLink("your logo here", "Index", "Home")*@
+                    </p>
                 </div>
                 <div class="float-right">
                     <section id="login">
                         @Html.Partial("_LoginPartial")
                     </section>
-                    <nav>
-                        <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                        </ul>
-                    </nav>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <nav style="margin-top: 35px;">
+                            <ul id="menu">
+                                <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                                <li>@Html.ActionLink("Agregar Albarán", "Index", "Despatch")</li>
+                                
+                                @*
+                                <li>@Html.ActionLink("About", "About", "Home")</li>
+                                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                                *@
+                            </ul>
+                        </nav>
+                    }
                 </div>
             </div>
         </header>
@@ -37,7 +64,7 @@
         <footer>
             <div class="content-wrapper">
                 <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+                    <p>&copy; @DateTime.Now.Year - Asociación de Empresarios Mayoristas de Pescados de Madrid</p>
                 </div>
             </div>
         </footer>

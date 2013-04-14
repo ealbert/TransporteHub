@@ -187,6 +187,7 @@ ul#menu {
     text-align: right;
 }
 
+
     ul#menu li {
         display: inline;
         list-style: none;
@@ -201,7 +202,7 @@ ul#menu {
 
         ul#menu li a:hover {
             color: #333;
-            text-decoration: none;
+            text-decoration: none;            
         }
 
 

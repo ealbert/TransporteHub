@@ -1,0 +1,35 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Transportista - Agregar Albarán";    
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+                @*
+                <br/>
+                <h2>@ViewBag.Message</h2>
+                *@
+            </hgroup>
+            <p>
+                [Sección de encabezado]<br/>
+                Esta pagina permite al transportista subir un fichero de excel usando la plantilla de albaranes. Una vez subido el albaran la aplicacion muestra las lineas procesadas, para que el transportista pueda verificar los datos antes de hacerlos visibles al resto de usuarios.
+            </p>
+        </div>
+    </section>
+}
+@using (Html.BeginForm("UploadFile", "Despatch", FormMethod.Post))
+{
+    <fieldset>
+        <legend>Seleccione Albaran:</legend>
+        <ol>
+            <li>
+                <input type="file" name="contactsFile" />
+            </li>
+        </ol>
+        <input type="submit" value="Subir Archivo" />
+    </fieldset>
+}
