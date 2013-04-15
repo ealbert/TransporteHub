@@ -1,4 +1,4 @@
-﻿@model dynamic
+﻿@model Aemp.Logistica.Web.Models.UploadListadoModel
 
 @{
     ViewBag.Title = "Transportista - Agregar Albarán";    
@@ -24,13 +24,24 @@
         </div>
     </section>
 }
-@using (Html.BeginForm("UploadFile", "Dispatch", FormMethod.Post))
+@using (Html.BeginForm("UploadFile", "Dispatch", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    <fieldset>
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <fieldset>        
+        @Html.LabelFor(model => model.PedidoReferencia)
+        @Html.EditorFor(model => model.PedidoReferencia)
+        @Html.ValidationMessageFor(m => m.PedidoReferencia)
+        @Html.LabelFor(model => model.CamionReferencia)
+        @Html.EditorFor(model => model.CamionReferencia)
+        @Html.ValidationMessageFor(m => m.CamionReferencia)
+        @Html.LabelFor(model => model.PedidoFecha)
+        @Html.EditorFor(model => model.PedidoFecha)
+        @Html.ValidationMessageFor(m => m.PedidoFecha)
         <legend>Seleccione Albaran:</legend>
         <ol>
             <li>
-                <input type="file" name="contactsFile" />
+                <input type="file" name="uploadedFile" />
             </li>
         </ol>
         <input type="submit" value="Subir Archivo" />

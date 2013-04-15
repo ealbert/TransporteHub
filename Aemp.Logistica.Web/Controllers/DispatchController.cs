@@ -16,8 +16,17 @@ namespace Aemp.Logistica.Web.Controllers
       return View();
     }
 
-    public ActionResult UploadFile(HttpPostedFileBase contactsFile)
+    public ActionResult UploadFile(UploadListadoModel model, HttpPostedFileBase uploadedFile)
     {
+      if (!ModelState.IsValid || uploadedFile == null)
+      {
+        ModelState.AddModelError("", "Compruebe por favor que todos los datos fueron correctamente introducidos");
+        if (uploadedFile == null)
+        {
+          ModelState.AddModelError("", "Seleccione un documento de excel con plantilla de listado y la informacion del pedido");  
+        }
+        return View("Index", model);  
+      }            
       return RedirectToAction("Listing");
     }
 

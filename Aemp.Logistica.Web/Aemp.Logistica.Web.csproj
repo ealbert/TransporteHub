@@ -181,6 +181,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\DispatchLineModel.cs" />
+    <Compile Include="Models\UploadListado.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -310,6 +311,7 @@
     <Content Include="Views\Dispatch\Index.cshtml" />
     <Content Include="Views\ReleaseNotes\Index.cshtml" />
     <Content Include="Views\Dispatch\Listing.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
