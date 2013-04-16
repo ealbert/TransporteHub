@@ -231,7 +231,14 @@ ul#menu {
         .featured p {
             font-size: 1.1em;
         }
-
+/* featured */
+#detail_up:hover, #detail_down:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+#detail_up, #detail_down {
+    opacity: 0.5
+}
 /* page titles */
 hgroup.title {
     margin-bottom: 10px;

@@ -7,6 +7,8 @@
 @section featured {
     <section class="featured">
         <div class="content-wrapper">
+            <div id="detail_up" class="float-right"><img src="~/Images/deploy_chevronup.gif"/></div>
+            <div id="detail_down" class="float-right"><img src="~/Images/deploy_chevrondown.gif"/></div>
             <hgroup class="title">
                 <h1>@ViewBag.Title</h1>
                 @if (ViewBag.NotificationMsg != null)
@@ -15,12 +17,15 @@
                     <h2>@ViewBag.NotificationMsg</h2>
                 }
             </hgroup>
-            <p>
-                <h5>Apuntes de Diseño</h5>
-                Esta pagina permite al transportista subir un fichero de excel usando la plantilla de albaranes. Una vez subido el albaran la aplicacion muestra las lineas procesadas, para que el transportista pueda verificar los datos antes de hacerlos visibles al resto de usuarios.<br/>
-                <h5>Observaciones</h5>
-                De momento cualquier tipo de fichero puede ser subido al servidor ya que la funcion para procesar el fichero no esta todavia disponible.
-            </p>
+            
+            <div id="featured_detail">
+                <p >
+                    <h5>Apuntes de Diseño</h5>
+                    Esta pagina permite al transportista subir un fichero de excel usando la plantilla de albaranes. Una vez subido el albaran la aplicacion muestra las lineas procesadas, para que el transportista pueda verificar los datos antes de hacerlos visibles al resto de usuarios.<br/>
+                    <h5>Observaciones</h5>
+                    De momento cualquier tipo de fichero puede ser subido al servidor ya que la funcion para procesar el fichero no esta todavia disponible.
+                </p>
+             </div>
         </div>
     </section>
 }
@@ -50,3 +55,8 @@
 <p>
     @Html.ActionLink("Descargar Plantilla", "ExcelTemplate")
 </p>
+
+@section scripts
+{
+    <script src="~/Scripts/feature-detail.js" type="text/javascript"></script>
+}
