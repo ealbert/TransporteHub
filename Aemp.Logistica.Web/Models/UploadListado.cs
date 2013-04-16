@@ -9,13 +9,13 @@ namespace Aemp.Logistica.Web.Models
   public class UploadListadoModel
   {
     [Required]
-    [StringLength(30, ErrorMessage = "La refencia debe tener minimo {1} caracteres y maximo {0}  ", MinimumLength = 3)]
+    [StringLength(30, ErrorMessage = "La refencia debe tener entre {2} y {1} caracteres", MinimumLength = 3)]
     [DataType(DataType.Text)]
     [Display(Name = "Numero de Referencia")]
     public string PedidoReferencia { get; set; }
 
     [Required]
-    [StringLength(15, ErrorMessage = "El campo de la referencia del camion debe tener minimo {1} caracteres y maximo {0}  ", MinimumLength = 6)]
+    [StringLength(15, ErrorMessage = "El campo de la referencia del camion debe tener entre {2} y {1} caracteres", MinimumLength = 6)]
     [DataType(DataType.Text)]
     [Display(Name = "Camion")]
     public string CamionReferencia { get; set; }

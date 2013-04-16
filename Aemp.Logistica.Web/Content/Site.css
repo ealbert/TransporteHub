@@ -470,6 +470,13 @@ textarea {
         padding: 4px;
         margin-right: 4px;
     }
+    
+    input[type="submit"]:hover {
+        border: 1px solid yellowgreen;
+        -webkit-box-shadow: 0px 0px 8px 2px #000000;
+        -moz-box-shadow: 0px 0px 8px 2px #000000;
+        box-shadow: 0px 0px 4px 4px GrayText;        
+    }
 
 /* info and errors */
 .message-info {
