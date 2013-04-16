@@ -58,7 +58,7 @@ namespace Aemp.Logistica.Web.Controllers
 
     public ActionResult ExcelTemplate()
     {
-      return File("~/App_Data/Listado_Plantilla.xlsx", "application/vnd.ms-excel", "Listado_Plantilla.xlsx");
+      return File("~/Content/documents/Listado_Plantilla.xlsx", "application/vnd.ms-excel", "Listado_Plantilla.xlsx");
     }
 
     private DispatchModel GetAlbaran()
