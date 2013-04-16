@@ -18,16 +18,34 @@ namespace Aemp.Logistica.Web.Controllers
 
     public ActionResult UploadFile(UploadListadoModel model, HttpPostedFileBase uploadedFile)
     {
-      if (!ModelState.IsValid || uploadedFile == null)
+      var invalidFlag = IsInvalidUploadFile(uploadedFile);
+      if (!ModelState.IsValid || invalidFlag)
       {
         ModelState.AddModelError("", "Compruebe por favor que todos los datos fueron correctamente introducidos");
-        if (uploadedFile == null)
+        if(invalidFlag)        
         {
-          ModelState.AddModelError("", "Seleccione un documento de excel con plantilla de listado y la informacion del pedido");  
+          ModelState.AddModelError("", InvalidUploadFileNotification(uploadedFile));  
         }
         return View("Index", model);  
       }            
       return RedirectToAction("Listing");
+    }
+
+    private bool IsInvalidUploadFile(HttpPostedFileBase uploadedFile)
+    {
+      if (uploadedFile == null) return true;
+      if (uploadedFile.ContentType != "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") return true;
+      return false;
+    }
+
+    private string InvalidUploadFileNotification(HttpPostedFileBase uploadedFile)
+    {
+      if(uploadedFile == null) return "Seleccione un documento de excel con la informacion del pedido";
+      if (uploadedFile.ContentType != "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+      {
+        return "Confirme que el archivo con el listado es un documento valido de Excel del tipo XLSX";
+      }
+      return "El archivo no es reconocido, contacte con el adminstrador";
     }
 
     public ActionResult Listing()
@@ -36,6 +54,11 @@ namespace Aemp.Logistica.Web.Controllers
       const string msg = "{0} - Nuevo albarán con fecha {1:dd-MM-yyyy} con {2} lineas";
       ViewBag.Message = string.Format(msg, albaran.Transportista, albaran.Fecha, albaran.Lineas.Count);
       return View(GetAlbaran());
+    }
+
+    public ActionResult ExcelTemplate()
+    {
+      return File("~/App_Data/Listado_Plantilla.xlsx", "application/vnd.ms-excel", "Listado_Plantilla.xlsx");
     }
 
     private DispatchModel GetAlbaran()
