@@ -428,6 +428,11 @@ label {
     font-weight: 600;
 }
 
+.labelWithOutBlock {
+    display: inline;
+    margin-right: 10px;
+}
+
 label.checkbox {
     display: inline;
 }

@@ -22,7 +22,7 @@ namespace Aemp.Logistica.Web.Models
 
     [Required]
     [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]    
-    [Display(Name = "Fecha de Pedido")]
+    [Display(Name = "Fecha de Envio")]
     public DateTime? PedidoFecha { get; set; }
 
   }

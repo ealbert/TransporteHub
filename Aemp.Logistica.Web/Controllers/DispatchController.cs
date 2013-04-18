@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Aemp.Logistica.Web.Models;
@@ -28,7 +30,7 @@ namespace Aemp.Logistica.Web.Controllers
         }
         return View("Index", model);  
       }            
-      return RedirectToAction("Listing");
+      return RedirectToAction("Listing", model);
     }
 
     private bool IsInvalidUploadFile(HttpPostedFileBase uploadedFile)
@@ -45,15 +47,22 @@ namespace Aemp.Logistica.Web.Controllers
       {
         return "Confirme que el archivo con el listado es un documento valido de Excel del tipo XLSX";
       }
-      return "El archivo no es reconocido, contacte con el adminstrador";
+      return "El archivo no es reconocido, contacte con el administrador";
     }
 
-    public ActionResult Listing()
+    public ActionResult Listing(UploadListadoModel model)
     {
-      var albaran = GetAlbaran();
+      var listado = GetAlbaran(model);
       const string msg = "{0} - Nuevo albarán con fecha {1:dd-MM-yyyy} con {2} lineas";
-      ViewBag.Message = string.Format(msg, albaran.Transportista, albaran.Fecha, albaran.Lineas.Count);
-      return View(GetAlbaran());
+      ViewBag.Message = string.Format(msg, listado.Transportista, listado.Fecha, listado.Lineas.Count);    
+      Session.Add("Listado", listado);
+      return View(listado);
+    }
+
+    public ActionResult Enquiry()
+    {
+      var model = Listados();
+      return View(model);
     }
 
     public ActionResult ExcelTemplate()
@@ -61,9 +70,9 @@ namespace Aemp.Logistica.Web.Controllers
       return File("~/Content/documents/Listado_Plantilla.xlsx", "application/vnd.ms-excel", "Listado_Plantilla.xlsx");
     }
 
-    private DispatchModel GetAlbaran()
+    private DispatchModel GetAlbaran(UploadListadoModel model)
     {
-      var result = new DispatchModel {Estado = "Recibido", Fecha = DateTime.Now.Date, Transportista = "KillerLogistics"};
+      var result = new DispatchModel {Estado = "Recibido", Fecha = model.PedidoFecha.Value, Transportista = "KillerLogistics", Camion = model.CamionReferencia, PedidoReferencia = model.PedidoReferencia};
       var linea = new DispatchLineModel
         {
           LineaId = 1,
@@ -110,13 +119,25 @@ namespace Aemp.Logistica.Web.Controllers
     public ActionResult Confirm()
     {
       TempData["NotificationMsg"] = "Ultimo albaran fue confirmado.";
-      return RedirectToAction("Index");
+      var listado = (DispatchModel) Session["Listado"];
+      listado.FechaCreado = DateTime.Now;
+      Listados().Add(listado);
+      return RedirectToAction("Enquiry");
     }
 
     public ActionResult Discard()
     {
       TempData["NotificationMsg"] = "Ultimo albaran importado fue descartado.";
       return RedirectToAction("Index");
+    }
+
+    private List<DispatchModel> Listados()
+    {
+      if (Session["Listados"] == null)
+      {
+        Session["Listados"] = new List<DispatchModel>();
+      }
+      return (List<DispatchModel>) Session["Listados"];
     }
   }
 }

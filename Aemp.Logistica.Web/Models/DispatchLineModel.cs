@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace Aemp.Logistica.Web.Models
 {
@@ -14,9 +12,24 @@ namespace Aemp.Logistica.Web.Models
     }
 
     public string Transportista { get; set; }
+
+    [Display(Name = "Fecha de Envio")]
+    [DataType(DataType.Date)]
     public DateTime Fecha { get; set; }
+
+    [Display(Name = "Estado de Listado")]
     public string Estado { get; set; }
+        
+    [Display(Name = "Referencia de Camion")]
+    public string Camion { get; set; }
+
+    [Display(Name = "Numero de Referencia")]
+    public string PedidoReferencia { get; set; }
+
     public List<DispatchLineModel> Lineas { get; set; }
+
+    [DataType(DataType.DateTime)]
+    public DateTime FechaCreado { get; set; }
   }
 
   public class DispatchLineModel
