@@ -36,6 +36,7 @@
             <th>Estado</th>
             <th>Creado</th>
             <th>Lineas</th>
+            <th></th>
         </thead>
         @foreach (var listado in Model)
         {
@@ -47,6 +48,7 @@
                 <td>@listado.Estado</td>
                 <td>@listado.FechaCreado</td>
                 <td>@listado.Lineas.Count</td>
+                <td>@Html.ActionLink("detalle", "DisplayListado", new { listadoGuid = listado.Guid })</td>
             </tr>
         }
     </table>

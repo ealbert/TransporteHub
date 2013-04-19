@@ -30,7 +30,13 @@ namespace Aemp.Logistica.Web.Controllers
         }
         return View("Index", model);  
       }            
-      return RedirectToAction("Listing", model);
+      return RedirectToAction("ValidateListado", model);
+    }
+
+    public ActionResult DisplayListado(Guid listadoGuid)
+    {
+      var listado = Listados().SingleOrDefault(l => l.Guid == listadoGuid);
+      return View(listado);
     }
 
     private bool IsInvalidUploadFile(HttpPostedFileBase uploadedFile)
@@ -50,7 +56,7 @@ namespace Aemp.Logistica.Web.Controllers
       return "El archivo no es reconocido, contacte con el administrador";
     }
 
-    public ActionResult Listing(UploadListadoModel model)
+    public ActionResult ValidateListado(UploadListadoModel model)
     {
       var listado = GetAlbaran(model);
       const string msg = "{0} - Nuevo albarán con fecha {1:dd-MM-yyyy} con {2} lineas";
@@ -121,6 +127,7 @@ namespace Aemp.Logistica.Web.Controllers
       TempData["NotificationMsg"] = "Ultimo albaran fue confirmado.";
       var listado = (DispatchModel) Session["Listado"];
       listado.FechaCreado = DateTime.Now;
+      listado.Guid = Guid.NewGuid();
       Listados().Add(listado);
       return RedirectToAction("Enquiry");
     }
