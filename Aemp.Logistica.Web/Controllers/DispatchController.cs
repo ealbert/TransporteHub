@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Routing;
 using Aemp.Logistica.Web.Models;
-using Rotativa;
 
 namespace Aemp.Logistica.Web.Controllers
 {
@@ -69,16 +67,9 @@ namespace Aemp.Logistica.Web.Controllers
 
     public ActionResult ImprimirListado(Guid listadoGuid)
     {
-      return View("ImprimirListado", _lastListado);
-    }
-
-    public ActionResult ImprimirListadoAsPdf(Guid listadoGuid)
-    {
-      _lastListado = Listados().SingleOrDefault(l => l.Guid == listadoGuid);
-      return new ActionAsPdf("ImprimirListado", new {listadoGuid}) {FileName = "Listado.pdf"};
-    }
-
-    private static DispatchModel _lastListado;
+      var listado = Listados().SingleOrDefault(l => l.Guid == listadoGuid);
+      return View("ImprimirListado", listado);
+    }      
 
     public ActionResult Enquiry()
     {

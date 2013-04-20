@@ -68,9 +68,6 @@
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.5.0.2\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Rotativa">
-      <HintPath>..\packages\Rotativa.1.6.1\lib\net40\Rotativa.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -258,13 +255,6 @@
     <Content Include="Images\deploy_chevrondown.gif" />
     <Content Include="Images\deploy_chevronup.gif" />
     <Content Include="Images\download.png" />
-    <Content Include="NuGet.exe" />
-    <Content Include="Rotativa\libeay32.dll" />
-    <Content Include="Rotativa\libgcc_s_dw2-1.dll" />
-    <Content Include="Rotativa\mingwm10.dll" />
-    <Content Include="Rotativa\README.txt" />
-    <Content Include="Rotativa\ssleay32.dll" />
-    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\feature-detail.js" />
     <Content Include="Scripts\jquery-1.9.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
@@ -323,7 +313,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Content\documents\Listado_Plantilla.xlsx" />
-    <Content Include="App_Browsers\qt.browser" />
     <None Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="Views\Dispatch\Index.cshtml" />
     <Content Include="Views\ReleaseNotes\Index.cshtml" />
