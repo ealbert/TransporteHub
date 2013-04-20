@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using Aemp.Logistica.Web.Models;
+using Rotativa;
 
 namespace Aemp.Logistica.Web.Controllers
 {
@@ -24,12 +26,12 @@ namespace Aemp.Logistica.Web.Controllers
       if (!ModelState.IsValid || invalidFlag)
       {
         ModelState.AddModelError("", "Compruebe por favor que todos los datos fueron correctamente introducidos");
-        if(invalidFlag)        
+        if (invalidFlag)
         {
-          ModelState.AddModelError("", InvalidUploadFileNotification(uploadedFile));  
+          ModelState.AddModelError("", InvalidUploadFileNotification(uploadedFile));
         }
-        return View("Index", model);  
-      }            
+        return View("Index", model);
+      }
       return RedirectToAction("ValidateListado", model);
     }
 
@@ -48,7 +50,7 @@ namespace Aemp.Logistica.Web.Controllers
 
     private string InvalidUploadFileNotification(HttpPostedFileBase uploadedFile)
     {
-      if(uploadedFile == null) return "Seleccione un documento de excel con la informacion del pedido";
+      if (uploadedFile == null) return "Seleccione un documento de excel con la informacion del pedido";
       if (uploadedFile.ContentType != "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
       {
         return "Confirme que el archivo con el listado es un documento valido de Excel del tipo XLSX";
@@ -60,10 +62,23 @@ namespace Aemp.Logistica.Web.Controllers
     {
       var listado = GetAlbaran(model);
       const string msg = "{0} - Nuevo albarán con fecha {1:dd-MM-yyyy} con {2} lineas";
-      ViewBag.Message = string.Format(msg, listado.Transportista, listado.Fecha, listado.Lineas.Count);    
+      ViewBag.Message = string.Format(msg, listado.Transportista, listado.Fecha, listado.Lineas.Count);
       Session.Add("Listado", listado);
       return View(listado);
     }
+
+    public ActionResult ImprimirListado(Guid listadoGuid)
+    {
+      return View("ImprimirListado", _lastListado);
+    }
+
+    public ActionResult ImprimirListadoAsPdf(Guid listadoGuid)
+    {
+      _lastListado = Listados().SingleOrDefault(l => l.Guid == listadoGuid);
+      return new ActionAsPdf("ImprimirListado", new {listadoGuid}) {FileName = "Listado.pdf"};
+    }
+
+    private static DispatchModel _lastListado;
 
     public ActionResult Enquiry()
     {
@@ -128,6 +143,7 @@ namespace Aemp.Logistica.Web.Controllers
       var listado = (DispatchModel) Session["Listado"];
       listado.FechaCreado = DateTime.Now;
       listado.Guid = Guid.NewGuid();
+      listado.Usuario = User.Identity.Name;
       Listados().Add(listado);
       return RedirectToAction("Enquiry");
     }

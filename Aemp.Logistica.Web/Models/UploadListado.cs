@@ -21,7 +21,7 @@ namespace Aemp.Logistica.Web.Models
     public string CamionReferencia { get; set; }
 
     [Required]
-    [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]    
+    [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]    
     [Display(Name = "Fecha de Envio")]
     public DateTime? PedidoFecha { get; set; }
 

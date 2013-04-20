@@ -32,6 +32,9 @@ namespace Aemp.Logistica.Web.Models
     public DateTime FechaCreado { get; set; }
 
     public Guid Guid { get; set; }
+    
+    public string Usuario { get; set; }
+
   }
 
   public class DispatchLineModel

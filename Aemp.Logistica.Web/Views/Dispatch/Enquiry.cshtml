@@ -49,6 +49,7 @@
                 <td>@listado.FechaCreado</td>
                 <td>@listado.Lineas.Count</td>
                 <td>@Html.ActionLink("detalle", "DisplayListado", new { listadoGuid = listado.Guid })</td>
+                <td>@Html.ActionLink("imprimir", "ImprimirListadoAsPdf", new { listadoGuid = listado.Guid })</td>
             </tr>
         }
     </table>

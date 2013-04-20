@@ -1,21 +1,43 @@
 ﻿@model Aemp.Logistica.Web.Models.DispatchModel
-
-<table id="header">
+@{
+    Layout = "";
+}
+<table>
     <tr>
-        <td>@Html.LabelFor(m => m.Transportista)</td>
-        <td>@Html.DisplayFor(m => m.Transportista)</td>
-    </tr>
-    <tr>
-        <td>@Html.LabelFor(m => m.Fecha)</td>
-        <td>@Html.DisplayFor(m => m.Fecha)</td>
-    </tr>
-    <tr>
-        <td>@Html.LabelFor(m => m.PedidoReferencia)</td>
-        <td>@Html.DisplayFor(m => m.PedidoReferencia)</td>
-    </tr>
-    <tr>
-        <td>@Html.LabelFor(m => m.Camion)</td>
-        <td>@Html.DisplayFor(m => m.Camion)</td>
+        <td>
+            <table class="encabezado">
+                <tr>
+                    <td>@Html.LabelFor(m => m.Transportista)</td>
+                    <td>@Html.DisplayFor(m => m.Transportista)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(m => m.Fecha)</td>
+                    <td>@Html.DisplayFor(m => m.Fecha)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(m => m.PedidoReferencia)</td>
+                    <td>@Html.DisplayFor(m => m.PedidoReferencia)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(m => m.Camion)</td>
+                    <td>@Html.DisplayFor(m => m.Camion)</td>
+                </tr>
+            </table>
+        </td>       
+        <td style="vertical-align: top">
+            <table class="encabezado">
+                <tr>
+                    <td>@Html.LabelFor(m => m.Usuario)</td>
+                    <td>@Html.DisplayFor(m => m.Usuario)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(m => m.Estado)</td>
+                    <td>@Html.DisplayFor(m => m.Estado)</td>
+                </tr>
+                <tr></tr>
+                <tr></tr>
+            </table>
+        </td> 
     </tr>
 </table>
 <table id="lineas">
@@ -45,7 +67,8 @@
     $(document).ready(function () {
         $("#lineas > tbody tr:odd").css("background-color", "#F7F7F7");
         $("#lineas > tbody tr th").css("padding-right", "20px"); // ToDo: Use CSS to do this
-        $("#header > tbody td:odd").css("background-color", "rgb(122, 192, 218)").css("padding-left", "20px").css("color", "white").css("font-size", "1.2em");
+        $(".encabezado > tbody td:odd").css("background-color", "rgb(122, 192, 218)").css("padding-left", "20px").css("color", "white").css("font-size", "1.2em");
     });
 </script>
+
 
