@@ -1,7 +1,7 @@
 ﻿@model System.Collections.Generic.List<LiteDispatch.Web.Models.DispatchModel>
 
 @{
-    ViewBag.Title = "Transportista - Consulta de Listados Activos";    
+    ViewBag.Title = "Haulier - Active Dispatch Notes";    
 }
 @section featured {
     <section class="featured">
@@ -15,10 +15,10 @@
             </hgroup>
             <div id="featured_detail">
                 <p>
-                    <h5>Apuntes de Diseño</h5>
-                    Esta pagina permite al transportista consultar sus envios activos<br/>
-                    <h5>Observaciones</h5>
-                    De momento esta pagina es un prototipo que presenta siempre los mismos datos.
+                    <h5>Design Notes</h5>
+                    This page display active dispatch notes for a determined haulier<br/>
+                    <h5>Comments</h5>
+                    Currently this page displays all active dispatches for all hauliers
                 </p>
             </div>
         </div>
@@ -29,13 +29,13 @@
 {
     <table id="listados">
         <thead>
-            <th>Transportista</th>
-            <th>Fecha</th>
-            <th>Referencia</th>
-            <th>Camion</th>
-            <th>Estado</th>
-            <th>Creado</th>
-            <th>Lineas</th>
+            <th>Haulier</th>
+            <th>Date</th>
+            <th>Reference</th>
+            <th>Truck</th>
+            <th>State</th>
+            <th>Creation Date</th>
+            <th>Lines</th>
             <th></th>
         </thead>
         @foreach (var listado in Model)
@@ -56,7 +56,7 @@
 }
 else
 {
-    <p>No hay ningun listado activo</p>
+    <p>No active dispatch notes are available</p>
 }
 @section scripts
 {

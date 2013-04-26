@@ -1,7 +1,7 @@
 ﻿@model LiteDispatch.Web.Models.UploadListadoModel
 
 @{
-    ViewBag.Title = "Transportista - Agregar Albarán";    
+    ViewBag.Title = "Haulier - New Dispatch Note";    
 }
 
 @section featured {
@@ -20,10 +20,10 @@
             
             <div id="featured_detail">
                 <p >
-                    <h5>Apuntes de Diseño</h5>
-                    Esta pagina permite al transportista subir un fichero de excel usando la plantilla de albaranes. Una vez subido el albaran la aplicacion muestra las lineas procesadas, para que el transportista pueda verificar los datos antes de hacerlos visibles al resto de usuarios.<br/>
-                    <h5>Observaciones</h5>
-                    De momento cualquier tipo de fichero puede ser subido al servidor ya que la funcion para procesar el fichero no esta todavia disponible.
+                    <h5>Design Notes</h5>
+                    In this page the haulier uploads a new dispatch note file, this file is an Excel document with a well known format. Download the file provided on the link at the bottom of this page for an example file.<br/>
+                    <h5>Comments</h5>
+                    Currently the upload file is not processed at all, a mock set of lines are created instead. Nevertheless, the application checks that the correct file type is uploaded.
                 </p>
              </div>
         </div>
@@ -43,7 +43,7 @@
         @Html.LabelFor(model => model.PedidoFecha)
         @Html.EditorFor(model => model.PedidoFecha)
         @Html.ValidationMessageFor(m => m.PedidoFecha)
-        <legend>Seleccione Albaran:</legend>
+        <legend>Select Dispatch</legend>
         <ol>
             <li>
                 <input type="file" name="uploadedFile" />
@@ -53,7 +53,7 @@
     </fieldset>    
 }
 <p>
-    @Html.ActionLink("Descargar Plantilla", "ExcelTemplate")
+    @Html.ActionLink("Download Template", "ExcelTemplate")
 </p>
 
 @section scripts

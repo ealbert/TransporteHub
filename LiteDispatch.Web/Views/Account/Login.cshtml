@@ -1,7 +1,7 @@
 ﻿@model LiteDispatch.Web.Models.LoginModel
 
 @{
-    ViewBag.Title = "Iniciar sesión";
+    ViewBag.Title = "log in";
 }
 
 <hgroup class="title">
@@ -9,7 +9,7 @@
 </hgroup>
 
 <section id="loginForm">
-<h2>Utilice una cuenta local para iniciar una sesión.</h2>
+<h2>Start a new session</h2>
 @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
@@ -34,18 +34,8 @@
         </ol>
         <input type="submit" value="Iniciar sesión" />
     </fieldset>
-@*
-    <p>
-        @Html.ActionLink("Register", "Register") if you don't have an account.
-    </p>
-*@
 }
 </section>
-
-@*<section class="social" id="socialLoginForm">
-    <h2>Use another service to log in.</h2>
-    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
-</section>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

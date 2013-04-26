@@ -1,11 +1,11 @@
 ﻿@model DateTime?
 @if (Model.HasValue)
 {
-    @Html.TextBox("", String.Format("{0:dd/MM/yyyy}", Model.Value))
+    @Html.TextBox("", String.Format("{0:d}", Model.Value))
 }
 else
 {
-    @Html.TextBox("", String.Format("{0:dd/MM/yyyy}", DateTime.Now))
+    @Html.TextBox("", String.Format("{0:d}", DateTime.Now))
 }
 @{
     string name = ViewData.TemplateInfo.HtmlFieldPrefix;

@@ -9,11 +9,11 @@
     {
       if (User.Identity.IsAuthenticated)
       {
-        ViewBag.Message = "[Nombre del Transportista]";  
+        ViewBag.Message = "[Haulier's name]";  
       }
       else
       {
-        ViewBag.Message = "Registrese para poder acceder a las funciones de transportista.";
+        ViewBag.Message = "Register before using the application";
       }
       
 

@@ -38,33 +38,33 @@
   {
     [Required]
     [DataType(DataType.Password)]
-    [Display(Name = "Contraseña Actual")]
+    [Display(Name = "Current Password")]
     public string OldPassword { get; set; }
 
     [Required]
-    [StringLength(100, ErrorMessage = "La contraseña {0} debe tener al menos {2} caracteres.", MinimumLength = 6)]
+    [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
     [DataType(DataType.Password)]
-    [Display(Name = "Nueva Contraseña")]
+    [Display(Name = "New Password")]
     public string NewPassword { get; set; }
 
     [DataType(DataType.Password)]
-    [Display(Name = "Confirme Nueva Contraseña")]
-    [Compare("NewPassword", ErrorMessage = "La nueva contraseña y la contraseña de confirmación no coinciden.")]
+    [Display(Name = "Confirm New Password")]
+    [Compare("NewPassword", ErrorMessage = "The new and confirmation password fields do not match.")]
     public string ConfirmPassword { get; set; }
   }
 
   public class LoginModel
   {
     [Required]
-    [Display(Name = "Nombre Usuario")]
+    [Display(Name = "User Name")]
     public string UserName { get; set; }
 
     [Required]
     [DataType(DataType.Password)]
-    [Display(Name = "Contraseña")]
+    [Display(Name = "Password")]
     public string Password { get; set; }
 
-    [Display(Name = "Recuerdame?")]
+    [Display(Name = "Remember me?")]
     public bool RememberMe { get; set; }
   }
 
@@ -82,7 +82,7 @@
 
     [DataType(DataType.Password)]
     [Display(Name = "Confirm password")]
-    [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+    [Compare("Password", ErrorMessage = "The new and confirmation password fields do not match.")]
     public string ConfirmPassword { get; set; }
   }
 

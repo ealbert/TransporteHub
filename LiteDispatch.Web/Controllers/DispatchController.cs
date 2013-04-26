@@ -23,7 +23,7 @@
       var invalidFlag = IsInvalidUploadFile(uploadedFile);
       if (!ModelState.IsValid || invalidFlag)
       {
-        ModelState.AddModelError("", "Compruebe por favor que todos los datos fueron correctamente introducidos");
+        ModelState.AddModelError("", "Please, check that all fields were entered correctly");
         if (invalidFlag)
         {
           ModelState.AddModelError("", InvalidUploadFileNotification(uploadedFile));
@@ -35,7 +35,7 @@
 
     public ActionResult DisplayListado(Guid listadoGuid)
     {
-      var listado = Listados().SingleOrDefault(l => l.Guid == listadoGuid);
+      var listado = Dispatches().SingleOrDefault(l => l.Guid == listadoGuid);
       return View(listado);
     }
 
@@ -48,32 +48,32 @@
 
     private string InvalidUploadFileNotification(HttpPostedFileBase uploadedFile)
     {
-      if (uploadedFile == null) return "Seleccione un documento de excel con la informacion del pedido";
+      if (uploadedFile == null) return "Select an excel document with the dispatch information";
       if (uploadedFile.ContentType != "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
       {
-        return "Confirme que el archivo con el listado es un documento valido de Excel del tipo XLSX";
+        return "The uploaded file is not an XLSX Excel document";
       }
-      return "El archivo no es reconocido, contacte con el administrador";
+      return "The uploaded file is invalid";
     }
 
     public ActionResult ValidateListado(UploadListadoModel model)
     {
       var listado = GetAlbaran(model);
-      const string msg = "{0} - Nuevo albarán con fecha {1:dd-MM-yyyy} con {2} lineas";
+      const string msg = "{0} - New dispatch note was created with date {1:d} and contains {2} lines";
       ViewBag.Message = string.Format(msg, listado.Transportista, listado.Fecha, listado.Lineas.Count);
-      Session.Add("Listado", listado);
+      Session.Add("Dispatch", listado);
       return View(listado);
     }
 
     public ActionResult ImprimirListado(Guid listadoGuid)
     {
-      var listado = Listados().SingleOrDefault(l => l.Guid == listadoGuid);
+      var listado = Dispatches().SingleOrDefault(l => l.Guid == listadoGuid);
       return View("ImprimirListado", listado);
     }      
 
     public ActionResult Enquiry()
     {
-      var model = Listados();
+      var model = Dispatches();
       return View(model);
     }
 
@@ -84,16 +84,16 @@
 
     private DispatchModel GetAlbaran(UploadListadoModel model)
     {
-      var result = new DispatchModel {Estado = "Recibido", Fecha = model.PedidoFecha.Value, Transportista = "KillerLogistics", Camion = model.CamionReferencia, PedidoReferencia = model.PedidoReferencia};
+      var result = new DispatchModel {Estado = "Received", Fecha = model.PedidoFecha.Value, Transportista = "KillerLogistics", Camion = model.CamionReferencia, PedidoReferencia = model.PedidoReferencia};
       var linea = new DispatchLineModel
         {
           LineaId = 1,
-          TipoProducto = "Fresco",
-          Producto = "Merluza",
+          TipoProducto = "Fresh",
+          Producto = "Hake",
           Unidad = "Kg",
           Cantidad = 25,
           PuestoId = 18,
-          Comerciante = "ABELARDO ALVAREZ, S.L."
+          Comerciante = "RedSquid"
         };
 
       result.Lineas.Add(linea);
@@ -101,13 +101,13 @@
       linea = new DispatchLineModel
       {
         LineaId = 2,
-        TipoProducto = "Congelado",
-        Producto = "Pulpo Congelado",
-        Unidad = "Bulto",
+        TipoProducto = "Frozen",
+        Producto = "Frozen Squid",
+        Unidad = "Pallet",
         Cantidad = 4,
         PuestoId = 4,
         PuestoLetra = "A",
-        Comerciante = "PESCADOS JESUS CELORRIO, S.L."
+        Comerciante = "Alaska Brothers"
       };
 
       result.Lineas.Add(linea);
@@ -115,12 +115,12 @@
       linea = new DispatchLineModel
       {
         LineaId = 3,
-        TipoProducto = "Marisco",
-        Producto = "Mejillon",
-        Unidad = "Saco",
+        TipoProducto = "Shellfish",
+        Producto = "Mussel",
+        Unidad = "Sac",
         Cantidad = 20,
         PuestoId = 112,
-        Comerciante = "MOLUSCOS MADRID, S.A."
+        Comerciante = "Irish Seafoods"
       };
 
       result.Lineas.Add(linea);
@@ -130,28 +130,28 @@
 
     public ActionResult Confirm()
     {
-      TempData["NotificationMsg"] = "Ultimo albaran fue confirmado.";
-      var listado = (DispatchModel) Session["Listado"];
+      TempData["NotificationMsg"] = "Last dispatch note was confirmed";
+      var listado = (DispatchModel) Session["Dispatch"];
       listado.FechaCreado = DateTime.Now;
       listado.Guid = Guid.NewGuid();
       listado.Usuario = User.Identity.Name;
-      Listados().Add(listado);
+      Dispatches().Add(listado);
       return RedirectToAction("Enquiry");
     }
 
     public ActionResult Discard()
     {
-      TempData["NotificationMsg"] = "Ultimo albaran importado fue descartado.";
+      TempData["NotificationMsg"] = "Last dispatch note was discarded";
       return RedirectToAction("Index");
     }
 
-    private List<DispatchModel> Listados()
+    private List<DispatchModel> Dispatches()
     {
-      if (Session["Listados"] == null)
+      if (Session["Dispatches"] == null)
       {
-        Session["Listados"] = new List<DispatchModel>();
+        Session["Dispatches"] = new List<DispatchModel>();
       }
-      return (List<DispatchModel>) Session["Listados"];
+      return (List<DispatchModel>) Session["Dispatches"];
     }
   }
 }

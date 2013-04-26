@@ -13,17 +13,17 @@
 
     public string Transportista { get; set; }
 
-    [Display(Name = "Fecha de Envio")]
+    [Display(Name = "Dispatch Date")]
     [DataType(DataType.Date)]
     public DateTime Fecha { get; set; }
 
-    [Display(Name = "Estado de Listado")]
+    [Display(Name = "State")]
     public string Estado { get; set; }
         
-    [Display(Name = "Referencia de Camion")]
+    [Display(Name = "Truck Reg#")]
     public string Camion { get; set; }
 
-    [Display(Name = "Numero de Referencia")]
+    [Display(Name = "Reference Number")]
     public string PedidoReferencia { get; set; }
 
     public List<DispatchLineModel> Lineas { get; set; }

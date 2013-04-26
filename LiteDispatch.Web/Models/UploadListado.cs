@@ -6,20 +6,20 @@
   public class UploadListadoModel
   {
     [Required]
-    [StringLength(30, ErrorMessage = "La refencia debe tener entre {2} y {1} caracteres", MinimumLength = 3)]
+    [StringLength(30, ErrorMessage = "The {0} field must be between {2} and {1} characters", MinimumLength = 3)]
     [DataType(DataType.Text)]
-    [Display(Name = "Numero de Referencia")]
+    [Display(Name = "Reference Number")]
     public string PedidoReferencia { get; set; }
 
     [Required]
-    [StringLength(15, ErrorMessage = "El campo de la referencia del camion debe tener entre {2} y {1} caracteres", MinimumLength = 6)]
+    [StringLength(15, ErrorMessage = "The {0} field must be between {2} and {1} characters", MinimumLength = 6)]
     [DataType(DataType.Text)]
-    [Display(Name = "Camion")]
+    [Display(Name = "Truck Reg#")]
     public string CamionReferencia { get; set; }
 
     [Required]
     [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]    
-    [Display(Name = "Fecha de Envio")]
+    [Display(Name = "Dispatch Date")]
     public DateTime? PedidoFecha { get; set; }
 
   }
