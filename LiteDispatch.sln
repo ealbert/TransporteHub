@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiteDispatch.Web", "Aemp.Logistica.Web\LiteDispatch.Web.csproj", "{ECBF976F-0CED-4C06-9652-E26AA6854B70}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiteDispatch.Web", "LiteDispatch.Web\LiteDispatch.Web.csproj", "{ECBF976F-0CED-4C06-9652-E26AA6854B70}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{4A5A298C-8B4B-43A2-B955-E252B69ED782}"
 	ProjectSection(SolutionItems) = preProject
