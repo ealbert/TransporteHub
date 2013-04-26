@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Aemp.Logistica.Web.Models;
-
-namespace Aemp.Logistica.Web.Controllers
+﻿namespace LiteDispatch.Web.Controllers
 {
+  using System;
+  using System.Collections.Generic;
+  using System.Linq;
+  using System.Web;
+  using System.Web.Mvc;
+  using Models;
+
   public class DispatchController : Controller
   {
     public ActionResult Index()

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
-namespace Aemp.Logistica.Web.Models
+﻿namespace LiteDispatch.Web.Models
 {
+  using System;
+  using System.Collections.Generic;
+  using System.ComponentModel.DataAnnotations;
+
   public class DispatchModel
   {
     public DispatchModel()

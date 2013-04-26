@@ -1,21 +1,19 @@
-using System.Web.Security;
-using WebMatrix.WebData;
-
-namespace Aemp.Logistica.Web.Migrations
+namespace LiteDispatch.Web.Migrations
 {
-  using System;
-  using System.Data.Entity;
+  using System.Web.Security;
+  using Models;
+  using WebMatrix.WebData;
   using System.Data.Entity.Migrations;
   using System.Linq;
 
-  internal sealed class Configuration : DbMigrationsConfiguration<Aemp.Logistica.Web.Models.UsersContext>
+  internal sealed class Configuration : DbMigrationsConfiguration<UsersContext>
   {
     public Configuration()
     {
       AutomaticMigrationsEnabled = true;
     }
 
-    protected override void Seed(Aemp.Logistica.Web.Models.UsersContext context)
+    protected override void Seed(UsersContext context)
     {
       WebSecurity.InitializeDatabaseConnection(
         "SecurityDb",
@@ -23,19 +21,43 @@ namespace Aemp.Logistica.Web.Migrations
         "UserId",
         "UserName", autoCreateTables: true);
 
+      CreateAdminUser();
+      CreateHaulierUser();
+    }
+
+    private void CreateAdminUser()
+    {
       if (!Roles.RoleExists("Administrator")) Roles.CreateRole("Administrator");
 
-      if (!WebSecurity.UserExists("lelong37"))
+      if (!WebSecurity.UserExists("admin"))
       {
         WebSecurity.CreateUserAndAccount(
-          "lelong37",
+          "admin",
           "password",
-          new { EmailAddress = "enrique.albert.gleiser@gmail.com" });
+          new { EmailAddress = "admin.staff@lite.dispatch.com" });
       }
 
-      if (!Roles.GetRolesForUser("lelong37").Contains("Administrator"))
+      if (!Roles.GetRolesForUser("admin").Contains("Administrator"))
       {
-        Roles.AddUsersToRoles(new[] { "lelong37" }, new[] { "Administrator" });
+        Roles.AddUsersToRoles(new[] { "admin" }, new[] { "Administrator" });
+      }
+    }
+
+    private void CreateHaulierUser()
+    {
+      if (!Roles.RoleExists("Haulier")) Roles.CreateRole("Haulier");
+
+      if (!WebSecurity.UserExists("bluewhale"))
+      {
+        WebSecurity.CreateUserAndAccount(
+          "bluewhale",
+          "password",
+          new { EmailAddress = "bluewhale.staff@lite.dispatch.com" });
+      }
+
+      if (!Roles.GetRolesForUser("bluewhale").Contains("Haulier"))
+      {
+        Roles.AddUsersToRoles(new[] { "bluewhale" }, new[] { "Haulier" });
       }
     }
   }

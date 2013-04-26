@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace Aemp.Logistica.Web.Controllers
+﻿namespace LiteDispatch.Web.Controllers
 {
+  using System.Web.Mvc;
+
   public class HomeController : Controller
   {
     [Authorize]

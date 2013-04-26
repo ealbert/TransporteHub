@@ -1,4 +1,4 @@
-﻿@model Aemp.Logistica.Web.Models.DispatchModel
+﻿@model LiteDispatch.Web.Models.DispatchModel
 @{
     ViewBag.Title = "Transportista - Verificacion de Listado";    
 }
@@ -26,8 +26,8 @@
 @Html.Partial("Listado", Model)
 <table>
     <tr>
-        <td><input type="button" value="Confirmar" onclick="location.href='@Url.Action("Confirm", "Dispatch")'" /></td>
-        <td><input type="button" value="Descartar" onclick="location.href='@Url.Action("Discard", "Dispatch")'" /></td>
+        <td><input type="button" value="Confirmar" onclick=" location.href = '@Url.Action("Confirm", "Dispatch")'" /></td>
+        <td><input type="button" value="Descartar" onclick=" location.href = '@Url.Action("Discard", "Dispatch")'" /></td>
     </tr>
 </table>
 @section scripts

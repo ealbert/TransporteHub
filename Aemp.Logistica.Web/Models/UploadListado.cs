@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-
-namespace Aemp.Logistica.Web.Models
+﻿namespace LiteDispatch.Web.Models
 {
+  using System;
+  using System.ComponentModel.DataAnnotations;
+
   public class UploadListadoModel
   {
     [Required]
